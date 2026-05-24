@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>J. Quinton Adams — Network & UC Engineer</title>
+  <meta name="description" content="Cisco-certified Network and UC Engineer based in Southeast Alabama, serving clients nationwide. 20+ years of enterprise IT experience.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1E293B;
+      --navy-mid: #334155;
+      --navy-light: #475569;
+      --electric: #3B82F6;
+      --electric-dim: rgba(59, 130, 246, 0.15);
+      --electric-glow: rgba(59, 130, 246, 0.35);
+      --slate: #64748B;
+      --slate-light: #94A3B8;
+      --white: #F1F5F9;
+      --white-dim: rgba(241, 245, 249, 0.7);
+      --green: #38BDF8;
+      --card-bg: rgba(51, 65, 85, 0.5);
+      --border: rgba(59, 130, 246, 0.2);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--navy);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(11, 22, 40, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--electric);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--slate-light);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+      counter-increment: nav-counter;
+    }
+
+    .nav-links a::before {
+      content: attr(data-num) '. ';
+      color: var(--electric);
+      font-size: 0.7rem;
+    }
+
+    .nav-links a:hover { color: var(--electric); }
+
+    .nav-cta {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--electric);
+      border: 1px solid var(--electric);
+      padding: 0.5rem 1.2rem;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: all 0.2s;
+      letter-spacing: 0.08em;
+    }
+
+    .nav-cta:hover {
+      background: var(--electric-dim);
+      box-shadow: 0 0 20px var(--electric-glow);
+    }
+
+    /* ─── HERO ─── */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 2rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-inner {
+      max-width: 700px;
+    }
+
+    .hero-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--electric);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.2s forwards;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 40px;
+      height: 1px;
+      background: var(--electric);
+    }
+
+    h1.hero-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 800;
+      line-height: 1.0;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.4s forwards;
+    }
+
+    h2.hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 600;
+      color: var(--slate);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.6s forwards;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--slate-light);
+      max-width: 540px;
+      margin-bottom: 3rem;
+      line-height: 1.8;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.8s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 1s forwards;
+    }
+
+    .btn-primary {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      color: var(--electric);
+      border: 1px solid var(--electric);
+      padding: 0.9rem 2rem;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+
+    .btn-primary:hover {
+      background: var(--electric-dim);
+      box-shadow: 0 0 30px var(--electric-glow);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      color: var(--slate-light);
+      padding: 0.9rem 2rem;
+      text-decoration: none;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-secondary:hover { color: var(--electric); }
+
+    /* Hero stats */
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 5rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border);
+      opacity: 0;
+      animation: fadeUp 0.6s ease 1.2s forwards;
+    }
+
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--electric);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--slate);
+      letter-spacing: 0.08em;
+      margin-top: 0.3rem;
+    }
+
+    /* Floating network graphic */
+    .hero-graphic {
+      position: absolute;
+      right: -50px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 420px;
+      height: 420px;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    /* ─── SECTIONS ─── */
+    section {
+      padding: 7rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--electric);
+      letter-spacing: 0.12em;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-tag::after {
+      content: '';
+      display: inline-block;
+      flex: 1;
+      max-width: 200px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    h2.section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    /* ─── ABOUT ─── */
+    #about .about-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 5rem;
+      align-items: start;
+      margin-top: 3rem;
+    }
+
+    .about-text p {
+      color: var(--slate-light);
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+      line-height: 1.85;
+    }
+
+    .about-text p span {
+      color: var(--electric);
+      font-weight: 500;
+    }
+
+    .about-skills {
+      margin-top: 2rem;
+    }
+
+    .skills-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--slate);
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+
+    .skill-item {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--slate-light);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .skill-item::before {
+      content: '▸';
+      color: var(--electric);
+      font-size: 0.7rem;
+    }
+
+    /* Cert cards */
+    .cert-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .cert-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.2rem 1.4rem;
+      backdrop-filter: blur(8px);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .cert-card:hover {
+      border-color: var(--electric);
+      transform: translateX(4px);
+    }
+
+    .cert-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.2rem;
+    }
+
+    .cert-issuer {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--slate);
+      letter-spacing: 0.05em;
+    }
+
+    .cert-badge {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      margin-top: 0.5rem;
+      letter-spacing: 0.06em;
+    }
+
+    .badge-done {
+      background: rgba(100, 255, 218, 0.1);
+      color: var(--green);
+      border: 1px solid rgba(100, 255, 218, 0.3);
+    }
+
+    .badge-progress {
+      background: rgba(0, 212, 255, 0.1);
+      color: var(--electric);
+      border: 1px solid rgba(0, 212, 255, 0.3);
+    }
+
+    /* ─── SERVICES ─── */
+    #services { background: transparent; }
+
+    .services-intro {
+      color: var(--slate-light);
+      max-width: 560px;
+      margin-bottom: 3.5rem;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2rem;
+      backdrop-filter: blur(8px);
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--electric), transparent);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .service-card:hover {
+      border-color: rgba(0, 212, 255, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .service-card:hover::before { opacity: 1; }
+
+    .service-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    .service-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+    }
+
+    .service-desc {
+      font-size: 0.9rem;
+      color: var(--slate);
+      line-height: 1.75;
+    }
+
+    .service-tag {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--electric);
+      border: 1px solid var(--electric-dim);
+      padding: 0.25rem 0.6rem;
+      border-radius: 20px;
+      margin-top: 1.2rem;
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      text-align: center;
+    }
+
+    .contact-inner {
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    .contact-desc {
+      color: var(--slate-light);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin: 1.5rem 0 3rem;
+    }
+
+    .contact-form {
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--slate);
+      letter-spacing: 0.08em;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.85rem 1rem;
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      width: 100%;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--slate);
+      opacity: 0.6;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--electric);
+      box-shadow: 0 0 0 3px var(--electric-dim);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 130px; }
+
+    .form-group select option { background: var(--navy-mid); }
+
+    .btn-submit {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      color: var(--navy);
+      background: var(--electric);
+      border: none;
+      padding: 1rem 2.5rem;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.25s;
+      align-self: flex-start;
+    }
+
+    .btn-submit:hover {
+      background: #60A5FA;
+      box-shadow: 0 0 30px var(--electric-glow);
+      transform: translateY(-2px);
+    }
+
+    .contact-alt {
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--slate);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.2s;
+      letter-spacing: 0.05em;
+    }
+
+    .contact-link:hover { color: var(--electric); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-text {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--slate);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-text span { color: var(--electric); }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.12; }
+      50% { opacity: 0.18; }
+    }
+
+    .hero-graphic { animation: pulse 4s ease-in-out infinite; }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      #about .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-stats { gap: 2rem; flex-wrap: wrap; }
+      .hero-graphic { display: none; }
+      .contact-alt { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#home" class="nav-logo">jqadams.dev</a>
+    <ul class="nav-links">
+      <li><a href="#about" data-num="01">About</a></li>
+      <li><a href="#services" data-num="02">Services</a></li>
+      <li><a href="#contact" data-num="03">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get In Touch</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home">
+    <div class="hero-inner">
+      <div class="hero-tag">Hi, my name is</div>
+      <h1 class="hero-name">J.Q. Adams.</h1>
+      <h2 class="hero-title">Engineering networks that are Secure, Available, and Scalable.</h2>
+      <p class="hero-desc">
+        Cisco-certified Network and UC Engineer with 20+ years of enterprise IT experience. 
+        Based in Southeast Alabama, serving clients locally and nationwide. Currently expanding 
+        into network automation and AI-driven infrastructure.
+      </p>
+      <div class="hero-actions">
+        <a href="#services" class="btn-primary">View My Services</a>
+        <a href="#contact" class="btn-secondary">Get In Touch →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">20+</div>
+          <div class="stat-label">Years in Tech</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">7</div>
+          <div class="stat-label">Certifications</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">SE</div>
+          <div class="stat-label">Alabama Based</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decorative network SVG -->
+    <svg class="hero-graphic" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="200" cy="200" r="120" fill="none" stroke="#3B82F6" stroke-width="1"/>
+      <circle cx="200" cy="200" r="80" fill="none" stroke="#3B82F6" stroke-width="0.5"/>
+      <circle cx="200" cy="80" r="12" fill="#3B82F6"/>
+      <circle cx="320" cy="200" r="12" fill="#3B82F6"/>
+      <circle cx="200" cy="320" r="12" fill="#3B82F6"/>
+      <circle cx="80" cy="200" r="12" fill="#3B82F6"/>
+      <circle cx="200" cy="200" r="16" fill="#3B82F6"/>
+      <line x1="200" y1="80" x2="320" y2="200" stroke="#3B82F6" stroke-width="1"/>
+      <line x1="320" y1="200" x2="200" y2="320" stroke="#3B82F6" stroke-width="1"/>
+      <line x1="200" y1="320" x2="80" y2="200" stroke="#3B82F6" stroke-width="1"/>
+      <line x1="80" y1="200" x2="200" y2="80" stroke="#3B82F6" stroke-width="1"/>
+      <line x1="200" y1="80" x2="200" y2="200" stroke="#3B82F6" stroke-width="0.5" stroke-dasharray="4"/>
+      <line x1="320" y1="200" x2="200" y2="200" stroke="#3B82F6" stroke-width="0.5" stroke-dasharray="4"/>
+      <line x1="200" y1="320" x2="200" y2="200" stroke="#3B82F6" stroke-width="0.5" stroke-dasharray="4"/>
+      <line x1="80" y1="200" x2="200" y2="200" stroke="#3B82F6" stroke-width="0.5" stroke-dasharray="4"/>
+      <circle cx="260" cy="140" r="6" fill="none" stroke="#3B82F6" stroke-width="1"/>
+      <circle cx="140" cy="260" r="6" fill="none" stroke="#3B82F6" stroke-width="1"/>
+      <circle cx="260" cy="260" r="6" fill="none" stroke="#3B82F6" stroke-width="1"/>
+      <circle cx="140" cy="140" r="6" fill="none" stroke="#3B82F6" stroke-width="1"/>
+    </svg>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-tag">01. About Me</div>
+    <h2 class="section-title reveal">The Engineer Behind the Network</h2>
+
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>
+          I'm <span>J.Q. Adams</span> — a Network and Unified Communications Engineer 
+          with over two decades of hands-on experience designing, implementing, and maintaining 
+          enterprise-grade infrastructure. I'm based in <span>Headland, Alabama</span>, and I 
+          work with clients both locally in Southeast Alabama and remotely across the country.
+        </p>
+        <p>
+          My background spans <span>Cisco networking and UC engineering</span> — a combination 
+          that's rarer than most people realize. While many engineers specialize in one or the 
+          other, I've spent years working across both disciplines in large-scale, complex 
+          environments where reliability isn't optional.
+        </p>
+        <p>
+          What drives me right now is the intersection of <span>traditional networking and 
+          modern automation</span>. I'm actively building skills in Python and AI — not as a 
+          hobby, but as a deliberate move toward the future of network engineering. Networks 
+          are getting smarter. I intend to be ahead of that curve.
+        </p>
+        <p>
+          When I'm not engineering infrastructure, I'm studying, labbing, and building — 
+          always with one eye on where networking is heading next.
+        </p>
+
+        <div class="about-skills">
+          <div class="skills-label">Technologies & Tools</div>
+          <div class="skills-grid">
+            <span class="skill-item">Cisco Routing & Switching</span>
+            <span class="skill-item">Unified Communications</span>
+            <span class="skill-item">Voice over IP (VoIP)</span>
+            <span class="skill-item">Network Design</span>
+            <span class="skill-item">Python (Learning)</span>
+            <span class="skill-item">Network Automation</span>
+            <span class="skill-item">Windows Server / MCSA</span>
+            <span class="skill-item">CompTIA Security+</span>
+            <span class="skill-item">AWS Cloud Practitioner</span>
+            <span class="skill-item">AI Fundamentals</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cert-stack reveal">
+        <div class="cert-card">
+          <div class="cert-name">CCNA</div>
+          <div class="cert-issuer">Cisco Certified Network Associate</div>
+          <span class="cert-badge badge-done">✓ Certified</span>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">CompTIA Security+</div>
+          <div class="cert-issuer">CompTIA · Plus Series</div>
+          <span class="cert-badge badge-done">✓ Certified</span>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">AWS Cloud Practitioner</div>
+          <div class="cert-issuer">Amazon Web Services · Foundational</div>
+          <span class="cert-badge badge-done">✓ Certified</span>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">MCSA: Windows 10</div>
+          <div class="cert-issuer">Microsoft Certified Solutions Associate</div>
+          <span class="cert-badge badge-done">✓ Certified 2017</span>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">Google AI Professional Certificate</div>
+          <div class="cert-issuer">Google / Coursera</div>
+          <span class="cert-badge badge-done">✓ Completed</span>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">AI Fundamentals</div>
+          <div class="cert-issuer">Microsoft</div>
+          <span class="cert-badge badge-done">✓ Certified</span>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">Google IT Automation Certificate</div>
+          <div class="cert-issuer">Google / Coursera · Python & Automation</div>
+          <span class="cert-badge badge-progress">⟳ In Progress</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-tag">02. What I Do</div>
+    <h2 class="section-title reveal">Services</h2>
+    <p class="services-intro reveal">
+      I help businesses design, implement, and maintain network and communications 
+      infrastructure that's built to last. Whether you need a new deployment, a 
+      troubleshooting expert, or a long-term technical partner — I'm available locally 
+      in Southeast Alabama and remotely nationwide.
+    </p>
+
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="service-icon">🔗</span>
+        <div class="service-name">Network Design & Implementation</div>
+        <p class="service-desc">
+          End-to-end network architecture for businesses of all sizes. From initial 
+          design through full deployment — routers, switches, VLANs, routing protocols, 
+          and everything in between. Built on Cisco infrastructure, built to perform.
+        </p>
+        <span class="service-tag">Cisco · LAN/WAN · Routing & Switching</span>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">📞</span>
+        <div class="service-name">Unified Communications Engineering</div>
+        <p class="service-desc">
+          Design and implementation of voice and UC systems that keep your teams 
+          connected. VoIP infrastructure, call routing, dial plans, and voice 
+          network integration for enterprise environments.
+        </p>
+        <span class="service-tag">VoIP · UC Systems · Voice Engineering</span>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">🔍</span>
+        <div class="service-name">Network Assessment & Consulting</div>
+        <p class="service-desc">
+          Not sure where your network stands? I'll audit your existing infrastructure, 
+          identify gaps, vulnerabilities, and inefficiencies, and deliver a clear 
+          roadmap for improvement — with no fluff, just actionable findings.
+        </p>
+        <span class="service-tag">Audit · Strategy · Documentation</span>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">🛠️</span>
+        <div class="service-name">Troubleshooting & Support</div>
+        <p class="service-desc">
+          When something breaks, you need someone who's seen it before. With 20+ years 
+          of hands-on experience in complex enterprise environments, I diagnose and 
+          resolve network issues fast — remotely or on-site in Southeast Alabama.
+        </p>
+        <span class="service-tag">Remote & On-Site · Enterprise · Cisco</span>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">⚙️</span>
+        <div class="service-name">Network Automation</div>
+        <p class="service-desc">
+          Actively developing Python-based automation capabilities for network 
+          configuration, monitoring, and management. If you're looking to automate 
+          repetitive network tasks and reduce human error, let's talk about what's 
+          possible.
+        </p>
+        <span class="service-tag">Python · Automation · Emerging Capability</span>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">📍</span>
+        <div class="service-name">Local IT Support — SE Alabama</div>
+        <p class="service-desc">
+          Serving Headland, Dothan, and the surrounding Southeast Alabama area with 
+          hands-on, in-person network and IT support. Small business owners — you 
+          deserve enterprise-quality expertise without the enterprise price tag.
+        </p>
+        <span class="service-tag">Headland · Dothan · SE Alabama</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div class="section-tag" style="justify-content:center">03. Get In Touch</div>
+      <h2 class="section-title reveal">Let's Work Together</h2>
+      <p class="contact-desc reveal">
+        Have a project in mind, need a network assessment, or just want to connect? 
+        I'm always open to discussing how I can help. Fill out the form below or 
+        reach out directly — I respond within one business day.
+      </p>
+
+      <form class="contact-form reveal" action="mailto:contact@jqadams.dev" method="POST" enctype="text/plain">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="John Smith" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="john@company.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="service">What Can I Help With?</label>
+          <select id="service" name="service">
+            <option value="">Select a service...</option>
+            <option>Network Design & Implementation</option>
+            <option>Unified Communications Engineering</option>
+            <option>Network Assessment & Consulting</option>
+            <option>Troubleshooting & Support</option>
+            <option>Network Automation</option>
+            <option>Local IT Support (SE Alabama)</option>
+            <option>Something Else</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell me about your project or what you need help with..."></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Message →</button>
+      </form>
+
+      <div class="contact-alt reveal">
+        <a href="mailto:john@jqadams.dev" class="contact-link">
+          ✉ john@jqadams.dev
+        </a>
+        <a href="https://linkedin.com/in/john-adams-379b83" target="_blank" class="contact-link">
+          ↗ LinkedIn
+        </a>
+        <a href="https://github.com/jqadams-dev" target="_blank" class="contact-link">
+          ↗ GitHub
+        </a>
+        <span class="contact-link" style="cursor:default">
+          📍 Headland, Alabama
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-text">
+      Designed & built by <span>J.Q. Adams</span> · <span>jqadams.dev</span> · Headland, Alabama<br>
+      <span style="font-size:0.65rem; opacity:0.6;">© 2025 J.Q. Adams · All Rights Reserved</span>
+    </p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // Active nav highlight
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        if (window.scrollY >= section.offsetTop - 200) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.style.color = link.getAttribute('href') === `#${current}` 
+          ? 'var(--electric)' 
+          : '';
+      });
+    });
+  </script>
+</body>
+</html>
