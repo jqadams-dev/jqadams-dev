@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,20 +57,27 @@
       top: 0;
       width: 100%;
       z-index: 100;
-      padding: 0.8rem 2rem;
+      padding: 0 2rem 0 0;   /* zero top/bottom/left — logo flush to left edge */
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      background: #949494; /* Exact gray matching your logo background */
-      border-bottom: 1px solid rgba(0, 0, 0, 0.15); /* Slightly darkened border for contrast */
+      align-items: stretch;  /* children stretch to full nav height */
+      background: #949494;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.15);
     }
+
     .nav-logo {
-      display: inline-block;
+      display: inline-flex;
+      align-items: stretch;  /* logo fills full height */
+      padding: 0;
+      margin: 0;
     }
 
     .site-logo {
-      height: 65px;
+      height: 100%;          /* fill the nav top to bottom */
       width: auto;
+      display: block;
+      max-height: 110px;     /* cap so it doesn't get absurd on large screens */
+      min-height: 80px;      /* floor so it stays visible on small screens */
     }
 
     .nav-links {
@@ -81,7 +89,7 @@
     .nav-links a {
       font-family: 'DM Mono', monospace;
       font-size: 0.78rem;
-      color: #1E293B; /* Crisp dark navy text for contrast against the gray background */
+      color: #1E293B;
       text-decoration: none;
       letter-spacing: 0.08em;
       transition: color 0.2s;
@@ -94,8 +102,7 @@
       font-size: 0.7rem;
     }
 
-        /* Change from var(--electric) to a solid dark color if you want to try it out */
-    .nav-links a:hover { color: #000000; } 
+    .nav-links a:hover { color: #000000; }
 
     .nav-cta {
       font-family: 'DM Mono', monospace;
@@ -119,7 +126,7 @@
       min-height: 100vh;
       display: flex;
       align-items: center;
-      padding: 8rem 2rem 4rem;
+      padding: 10rem 2rem 4rem; /* increased top padding to clear taller nav */
       max-width: 1100px;
       margin: 0 auto;
       position: relative;
@@ -656,6 +663,8 @@
     /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
       .nav-links { display: none; }
+      nav { padding: 0 1.5rem 0 0; }
+      .site-logo { max-height: 75px; min-height: 60px; }
       #about .about-grid { grid-template-columns: 1fr; gap: 3rem; }
       .form-row { grid-template-columns: 1fr; }
       .hero-stats { gap: 2rem; flex-wrap: wrap; }
@@ -666,9 +675,9 @@
 </head>
 <body>
 
-      <nav>
-    <a href="#home" style="text-decoration: none; display: flex; align-items: center;">
-      <img src="jqadams-dev-logo.png?v=5" alt="John Adams Logo" height="65" style="height: 65px !important; width: auto !important; display: block; border-radius: 4px;">
+  <nav>
+    <a href="#home" class="nav-logo" style="text-decoration: none;">
+      <img src="jqadams-dev-logo.png?v=5" alt="John Adams Logo" class="site-logo">
     </a>
     <ul class="nav-links">
       <li><a href="#about" data-num="01">About</a></li>
@@ -908,56 +917,47 @@
       </p>
 
       <form class="contact-form reveal" action="https://api.web3forms.com/submit" method="POST">
-  
-  <input type="hidden" name="access_key" value="2c993230-008c-4335-aaff-d41ca6cbe9f9">
-  
-  <input type="hidden" name="redirect" value="https://jqadams.dev">
+        <input type="hidden" name="access_key" value="2c993230-008c-4335-aaff-d41ca6cbe9f9">
+        <input type="hidden" name="redirect" value="https://jqadams.dev">
 
-  <div class="form-row">
-    <div class="form-group">
-      <label for="name">Your Name</label>
-      <input type="text" id="name" name="name" placeholder="John Smith" required>
-    </div>
-    <div class="form-group">
-      <label for="email">Email Address</label>
-      <input type="email" id="email" name="email" placeholder="john@company.com" required>
-    </div>
-  </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="John Smith" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="john@company.com" required>
+          </div>
+        </div>
 
-  <div class="form-group">
-    <label for="service">What Can I Help With?</label>
-    <select id="service" name="service">
-      <option value="">Select a service...</option>
-      <option>Network Design & Implementation</option>
-      <option>Unified Communications Engineering</option>
-      <option>Network Assessment & Consulting</option>
-      <option>Troubleshooting & Support</option>
-      <option>Network Automation</option>
-      <option>Local IT Support (SE Alabama)</option>
-      <option>Something Else</option>
-    </select>
-  </div>
+        <div class="form-group">
+          <label for="service">What Can I Help With?</label>
+          <select id="service" name="service">
+            <option value="">Select a service...</option>
+            <option>Network Design & Implementation</option>
+            <option>Unified Communications Engineering</option>
+            <option>Network Assessment & Consulting</option>
+            <option>Troubleshooting & Support</option>
+            <option>Network Automation</option>
+            <option>Local IT Support (SE Alabama)</option>
+            <option>Something Else</option>
+          </select>
+        </div>
 
-  <div class="form-group">
-    <label for="message">Message</label>
-    <textarea id="message" name="message" placeholder="Tell me about your project or what you need help with..." required></textarea>
-  </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell me about your project or what you need help with..." required></textarea>
+        </div>
 
-  <button type="submit" class="btn-submit">Send Message →</button>
-</form>
+        <button type="submit" class="btn-submit">Send Message →</button>
+      </form>
+
       <div class="contact-alt reveal">
-        <a href="mailto:contact@jqadams.dev" class="contact-link">
-          ✉ contact@jqadams.dev
-        </a>
-        <a href="https://linkedin.com/in/john-adams-379b83" target="_blank" class="contact-link">
-          ↗ LinkedIn
-        </a>
-        <a href="https://github.com/jqadams-dev" target="_blank" class="contact-link">
-          ↗ GitHub
-        </a>
-        <span class="contact-link" style="cursor:default">
-          📍 Headland, Alabama
-        </span>
+        <a href="mailto:contact@jqadams.dev" class="contact-link">✉ contact@jqadams.dev</a>
+        <a href="https://linkedin.com/in/john-adams-379b83" target="_blank" class="contact-link">↗ LinkedIn</a>
+        <a href="https://github.com/jqadams-dev" target="_blank" class="contact-link">↗ GitHub</a>
+        <span class="contact-link" style="cursor:default">📍 Headland, Alabama</span>
       </div>
     </div>
   </section>
@@ -970,7 +970,6 @@
   </footer>
 
   <script>
-    // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -980,13 +979,10 @@
         }
       });
     }, { threshold: 0.1 });
-
     reveals.forEach(el => observer.observe(el));
 
-    // Active nav highlight
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
-
     window.addEventListener('scroll', () => {
       let current = '';
       sections.forEach(section => {
@@ -995,8 +991,8 @@
         }
       });
       navLinks.forEach(link => {
-        link.style.color = link.getAttribute('href') === `#${current}` 
-          ? 'var(--electric)' 
+        link.style.color = link.getAttribute('href') === `#${current}`
+          ? 'var(--electric)'
           : '';
       });
     });
